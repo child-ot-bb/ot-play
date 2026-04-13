@@ -1,0 +1,275 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background: black;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 시작 화면 */
+#startScreen {
+  background: black;
+}
+
+/* 게임 화면 */
+#gameScreen {
+  background: black;
+}
+
+.intro-title {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: bold;
+  color: white;
+  margin-bottom: clamp(28px, 5vw, 45px);
+  text-align: center;
+}
+
+.intro-desc {
+  font-size: clamp(1rem, 2.2vw, 1.7rem);
+  color: #ccc;
+  margin-bottom: clamp(30px, 5vw, 60px);
+  text-align: center;
+  line-height: 1.6;
+  max-width: min(750px, 90vw);
+  padding: 0 16px;
+}
+
+.stage-buttons {
+  display: flex;
+  gap: clamp(16px, 4vw, 30px);
+  margin-bottom: clamp(30px, 4vw, 45px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stage-info {
+  position: absolute;
+  top: clamp(24px, 4vw, 45px);
+  left: clamp(24px, 4vw, 45px);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#stageNumber {
+  background: rgba(255, 255, 255, 0.2);
+  padding: clamp(10px, 1.5vw, 15px) clamp(18px, 3vw, 30px);
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.count-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 3vw, 30px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.count-overlay.show {
+  opacity: 1;
+}
+
+.count-number {
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: bold;
+  color: white;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.sound-indicator {
+  display: flex;
+  gap: clamp(8px, 1.5vw, 10px);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.sound-indicator.hide {
+  opacity: 0;
+}
+
+.dot {
+  width: clamp(16px, 2.2vw, 30px);
+  height: clamp(16px, 2.2vw, 30px);
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.dot.off {
+  opacity: 0.2;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: bold;
+  color: white;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+#countdownNumber {
+  display: inline-block;
+}
+
+.countdown.show {
+  opacity: 1;
+}
+
+.shape-container {
+  display: flex;
+  gap: clamp(20px, 4vw, 60px);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: clamp(60px, 8vw, 90px) 0;
+  min-height: clamp(300px, 40vh, 450px);
+}
+
+.shape-container.four-shapes {
+  gap: clamp(12px, 2vw, 24px);
+}
+
+svg {
+  width: clamp(200px, 28vw, 324px);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  animation: shapeAppear 0.5s ease-in-out;
+}
+
+.shape-container.four-shapes svg {
+  width: clamp(170px, 25vw, 260px);
+}
+
+@keyframes shapeAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 버튼 스타일 */
+.btn {
+  padding: clamp(18px, 3vw, 30px) clamp(30px, 6vw, 75px);
+  font-size: clamp(1rem, 2.2vw, 1.7rem);
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background: white;
+  color: #667eea;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+#startBtn {
+  padding: clamp(24px, 4vw, 38px) clamp(42px, 7vw, 90px);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 900;
+}
+
+.stage-btn {
+  padding: clamp(16px, 3vw, 24px) clamp(28px, 6vw, 60px);
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  width: auto;
+}
+
+#backBtn,
+#retryBtn {
+  padding: clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 50px);
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  width: min(250px, 90vw);
+}
+
+.button-group {
+  display: flex;
+  gap: clamp(16px, 3vw, 30px);
+  justify-content: center;
+  flex-wrap: wrap;
+  transition: all 0.3s ease;
+}

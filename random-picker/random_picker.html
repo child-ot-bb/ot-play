@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>도형과 색 랜덤 추출</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 초기 화면 -->
+      <div id="startScreen" class="screen active">
+        <h1 class="intro-title">색과 도형 게임</h1>
+        <p class="intro-desc">
+          도형과 색상을 보여주는 게임입니다.<br />
+          3초 카운트다운 후 랜덤하게 조합된 도형이 나타납니다.<br />
+          모양은 겹칠 수 있지만, 색상은 모두 다릅니다.
+        </p>
+        <p class="intro-desc">몇 개의 도형을 보시겠어요?</p>
+        <div class="stage-buttons">
+          <button class="btn stage-btn" data-stage="0">2개</button>
+          <button class="btn stage-btn" data-stage="1">3개</button>
+          <button class="btn stage-btn" data-stage="2">4개</button>
+        </div>
+      </div>
+
+      <!-- 게임 진행 화면 -->
+      <div id="gameScreen" class="screen">
+        <div class="stage-info">
+          <span id="stageNumber">2개</span>
+        </div>
+
+        <div id="countOverlay" class="count-overlay">
+          <div id="countdownNumber" class="count-number">3</div>
+          <div id="soundIndicator" class="sound-indicator">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+
+        <div id="shapeContainer" class="shape-container">
+          <!-- 도형들이 여기에 추가됨 -->
+        </div>
+
+        <div class="button-group">
+          <button id="backBtn" class="btn">이전 화면으로</button>
+          <button id="retryBtn" class="btn">다시하기</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
